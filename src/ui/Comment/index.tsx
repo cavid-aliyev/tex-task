@@ -7,8 +7,6 @@ import {RootState} from '../../store';
 const Comments: React.FC = () => {
   const comments = useSelector((state: RootState) => state.comments.comments);
 
-  console.log(comments);
-
   if (comments.length === 0) {
     return (
       <View style={styles.container}>
@@ -19,7 +17,9 @@ const Comments: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Comments</Text>
+      {comments.map(comment => (
+        <Text key={comment.id}>{comment.text}</Text>
+      ))}
     </View>
   );
 };

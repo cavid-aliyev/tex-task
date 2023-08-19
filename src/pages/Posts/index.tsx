@@ -13,8 +13,6 @@ const Posts: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [modalVisible, setModalVisible] = React.useState<boolean>(false);
 
-  console.log(posts, 'aaa');
-
   React.useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
