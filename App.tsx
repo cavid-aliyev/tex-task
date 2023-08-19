@@ -1,13 +1,15 @@
 import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
+import {store} from './src/store';
+import {Provider} from 'react-redux';
 
 function App(): JSX.Element {
   return (
-    <SafeAreaView>
+    <Provider store={store}>
       <View>
-        <Text>Salaaam</Text>
+        <Text>ssssss</Text>
       </View>
-    </SafeAreaView>
+    </Provider>
   );
 }
 
