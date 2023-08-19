@@ -1,31 +1,41 @@
 import {createSlice} from '@reduxjs/toolkit';
-import type {PayloadAction} from '@reduxjs/toolkit';
+import {IPost} from '../../../pages/types/post';
+import {fetchPosts} from './thunk';
 
-export interface CounterState {
-  value: number;
+export interface PostState {
+  posts: IPost[];
+  loading: boolean;
+  error: string | null;
 }
 
-const initialState: CounterState = {
-  value: 0,
+const initialState: PostState = {
+  posts: [],
+  loading: false,
+  error: null,
 };
 
 export const postsReducer = createSlice({
   name: 'posts',
   initialState,
-  reducers: {
-    increment: state => {
-      state.value += 1;
-    },
-    decrement: state => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
-    },
+  reducers: {},
+  extraReducers: builder => {
+    builder
+      .addCase(fetchPosts.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchPosts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.posts = action.payload;
+        state.error = null;
+      })
+      .addCase(fetchPosts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || 'Error';
+      });
   },
 });
 
-// Action creators are generated for each case reducer function
-export const {increment, decrement, incrementByAmount} = postsReducer.actions;
+export const {} = postsReducer.actions;
 
 export default postsReducer.reducer;
