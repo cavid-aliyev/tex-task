@@ -20,5 +20,17 @@
       "title": "Post title 4",
       "body": "Post Descr 4"
     }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "postId": 1,
+      "text": "Comment 1"
+    },
+    {
+      "id": 1,
+      "postId": 3,
+      "text": "Comment 2"
+    }
   ]
 }

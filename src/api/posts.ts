@@ -11,3 +11,24 @@ export const getPosts = async (): Promise<IPost[]> => {
     return [];
   }
 };
+
+export const addPost = async (obj: IPost): Promise<IPost | null> => {
+  try {
+    const resp = await instance.post('posts', obj);
+
+    return resp.data;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+export const deletePost = async (id: number) => {
+  try {
+    const resp = await instance.delete(`posts/${id}`);
+
+    return resp.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -1,16 +1,17 @@
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, StyleSheet, Pressable} from 'react-native';
 import React from 'react';
 import {COLORS} from '../../constants';
 
 interface IButton {
   title: string;
+  onPress?: (params?: any) => void;
 }
 
-const Button: React.FC<IButton> = ({title}) => {
+const Button: React.FC<IButton> = ({title, onPress}) => {
   return (
-    <View style={styles.container}>
+    <Pressable onPress={onPress} style={styles.container}>
       <Text style={styles.btnText}>{title}</Text>
-    </View>
+    </Pressable>
   );
 };
 export default Button;
@@ -24,5 +25,6 @@ const styles = StyleSheet.create({
   },
   btnText: {
     color: COLORS.mainWhite,
+    textAlign: 'center',
   },
 });
